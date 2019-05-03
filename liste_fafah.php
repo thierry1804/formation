@@ -1,15 +1,14 @@
 <?php
 //inclusion des fichiers datas/auteurs.php et datas/livres.php
 include 'datas/auteurs.php';
-include 'datas/livres';
+include 'datas/livres.php';
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Listes des livres</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
         <div class="container">
@@ -33,7 +32,7 @@ include 'datas/livres';
             $titre = $livres[$a]['titre'];
             $resume = $livres[$a]['resume'];
             $pages = $livres[$a]['pages']; 
-            $pochette = $livres[$a]['pochettte'];
+            $pochette = $livres[$a]['pochette'];
             //déclaration des variables reference et isbn et affectation des valeurs
             $reference = "-";
             $isbn = "-";
@@ -48,13 +47,13 @@ include 'datas/livres';
             $video = "";
             $audio = ""; 
             //vérification de l'exixtence de la varible $video
-            if (isset($livre[$_GET['Books']]['video'])) {
+            if (isset($livre[$a]['video'])) {
                 //initialisation variable
-                $video = $livres[$_GET['Books']]['video'];
+                $video = $livres[$a]['video'];
             }
-            if (isset($livres[$_GET['Books']]['audio'])) {
+            if (isset($livres[$a]['audio'])) {
                 //initialisation variable
-                $audio = $livres[$_GET['Books']]['audio'];
+                $audio = $livres[$a]['audio'];
             }
         ?>
         <tr>
@@ -63,13 +62,13 @@ include 'datas/livres';
                 <code> <?php echo $bibliographie; ?></code>
             </td>
             <td>
-                <img src="images/books/<?php echo $pochettte; ?>" alt="<?php echo $titre; ?>" height="360"
+                <img src="images/books/<?php echo $pochette; ?>" alt="<?php echo $titre; ?>" height="360"
             </td>
             <td>
                 <h2><?php echo $titre; ?></h2>
                 <p><em><? php echo $resume; ?></em></p>
                 <p>ISBN : <?php echo $isbn; ?></p>
-                <p>Réf. : <?php echo $refrence; ?></p>
+                <p>Réf. : <?php echo $reference; ?></p>
                 <p>Pages : <?php echo $pages; ?></p>
             </td>
             <td>
@@ -99,7 +98,7 @@ include 'datas/livres';
                     <tr class="bg-info">
                         <td colspan="4" class="text-right">
                             <?php echo count($livres); ?>
-                            livre
+                            livres
                         </td>
                     </tr>
                 </tfoot>
