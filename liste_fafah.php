@@ -38,23 +38,13 @@ include 'datas/livres';
             $reference = -$livres[$a]['ean'] ;
             $isbn = -$livres[$a]['isbn'];
             //vérification si 'ean' existe
-                <?php 
                     if (isset($livres[$a]['ean'])){
                         $reference = $livres[$a]['ean'];
-                ?>
-                        Référence : <?php echo $reference ?>
-                <?php 
                     }
                     if (isset($livres[$a]['isbn'])){
                         $reference = $livres[$a]['isbn'];
-                ?>
-                        Référence : <?php echo $isbn ?>
-                <?php
                 }
-                ?>
         }
-        ?>
-        <?php 
             //déclaration des valeurs $video et $audio et affectation
             $video = $livres[$a]['video']" " ;
             $audio = $livres[$a]['audio']" " ; 
