@@ -35,39 +35,28 @@ include 'datas/livres';
             $pages = $livres[$a]['pages']; 
             $pochette = $livres[$a]['pochettte'];
             //déclaration des variables reference et isbn et affectation des valeurs
-            $reference = -$livres[$a]['ean'] ;
-            $isbn = -$livres[$a]['isbn'];
+            $reference = "-";
+            $isbn = "-";
             //vérification si 'ean' existe
-                    if (isset($livres[$a]['ean'])){
-                        $reference = $livres[$a]['ean'];
-                    }
-                    if (isset($livres[$a]['isbn'])){
-                        $reference = $livres[$a]['isbn'];
-                }
-        }
+            if (isset($livres[$a]['ean'])){
+                $reference = $livres[$a]['ean'];
+            }
+            if (isset($livres[$a]['isbn'])){
+                $reference = $livres[$a]['isbn'];
+            }
             //déclaration des valeurs $video et $audio et affectation
             $video = "";
             $audio = ""; 
             //vérification de l'exixtence de la varible $video
-             if (isset($livre[$_GET['Books']]['video'])) {
-            //initialisation variable
-            $video = $livres[$_GET['Books']]['video'];
-    ?> 
-        <h2>Video</h2>
-        <video controls="">
-            <source src="medias/<?php echo $video; ?>" type="video/mp4" />
-        </video>
-        <?php
-    }
-    if (isset($livres[$_GET['Books']]['audio'])) {
-        //initialisation variable
-        $audio = $livres[$_GET['Books']]['audio']; 
+            if (isset($livre[$_GET['Books']]['video'])) {
+                //initialisation variable
+                $video = $livres[$_GET['Books']]['video'];
+            }
+            if (isset($livres[$_GET['Books']]['audio'])) {
+                //initialisation variable
+                $audio = $livres[$_GET['Books']]['audio'];
+            }
         ?>
-        <h2>Audio</h2>
-        <audio controls="">
-            <source src="medias/<?php echo $audio; ?>" type="video/mp3" />
-        </audio>
-        
         <tr>
             <td>
                 <h2> <?php echo $auteur; ?></h2>
