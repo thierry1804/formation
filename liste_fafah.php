@@ -46,8 +46,8 @@ include 'datas/livres';
                 }
         }
             //déclaration des valeurs $video et $audio et affectation
-            $video = $livres[$a]['video']" " ;
-            $audio = $livres[$a]['audio']" " ; 
+            $video = "";
+            $audio = ""; 
             //vérification de l'exixtence de la varible $video
              if (isset($livre[$_GET['Books']]['video'])) {
             //initialisation variable
