@@ -3,6 +3,9 @@
 require 'datas/auteurs.php';
 //inclusion de datas/livres.php
 require 'datas/livres.php';
+//Tri par défaut
+$tri = 1;
+ksort($livres);
 ?>
 <!DOCTYPE html>
 <html>
