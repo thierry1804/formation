@@ -15,6 +15,12 @@ require 'datas/livres.php';
     <body>
         <div class="container">
             <h1>Liste des livres disponibles</h1>
+            <p>
+                <a href="?ordre=-1" class="btn btn-primary">
+                    Trier d'une manière décroissante
+                    <i class="fas fa-sort-amount-down"></i>
+                </a>
+            </p>
             <table class="table table-stripped">
                 <thead class="thead-dark">
                     <tr>
