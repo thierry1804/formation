@@ -75,7 +75,7 @@ include 'datas/livres.php';
                   }
                   ?>
                   <?php
-          		  if (strlen($video)) > 0 {
+          		  if (strlen($video) > 0) {
                   ?>
                   <video controls width="100%">
                   <source src="medias/<?php echo $video; ?>" type="video/mp4"/>
