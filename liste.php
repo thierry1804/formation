@@ -6,6 +6,16 @@ require 'datas/livres.php';
 //Tri par défaut
 $tri = 1;
 ksort($livres);
+//Vérification si paramètre passé
+if (isset($_GET['ordre'])) {
+    //Affectation de la valeur du paramètre ordre à la variable $tri
+    $tri = $_GET['ordre'];
+    //Vérifier si tri décroissant
+    if ($tri == -1) {
+        //Trier de manière décroissante le tableau $livres
+        krsort($livres);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
