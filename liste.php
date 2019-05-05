@@ -50,7 +50,7 @@ if (isset($_GET['ordre'])) {
                 <tbody>
         <?php
         // boucle pour chaque élément de l'array $livres
-        for ($a = 0; $a < count($livres); $a++) {
+        foreach ($livres as $a => $livre) {
             //affectation de la variable $cleAuteur
             $cleAuteur = $livres[$a]['auteur'];
             //définition de la variable $auteur
