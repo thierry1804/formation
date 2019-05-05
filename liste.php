@@ -24,6 +24,10 @@ require 'datas/livres.php';
             <table class="table table-stripped">
                 <thead class="thead-dark">
                     <tr>
+                        <th>
+                            Numéro
+                            <i class="fas fa-sort-amount-up"></i>
+                        </th>
                         <th>Informations</th>
                         <th>Pochette</th>
                         <th>Résumé</th>
@@ -79,6 +83,11 @@ require 'datas/livres.php';
         ?>
                     <tr>
                         <td>
+                            <strong>
+                                #<?php echo $a + 1; ?>
+                            </strong>
+                        </td>
+                        <td>
                             <h2><?php echo $auteur; ?></h2>
                             <code><?php echo $bibliographie; ?></code>
                         </td>
@@ -124,7 +133,7 @@ require 'datas/livres.php';
                 </tbody>
                 <tfoot>
                     <tr class="bg-info">
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             <!-- On affiche ici le nombre d'éléments dans le tableau $livres -->
                             <?php echo count($livres); ?>
                             livres
