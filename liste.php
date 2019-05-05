@@ -29,9 +29,9 @@ if (isset($_GET['ordre'])) {
         <div class="container">
             <h1>Liste des livres disponibles</h1>
             <p>
-                <a href="?ordre=-1" class="btn btn-primary">
-                    Trier d'une manière décroissante
-                    <i class="fas fa-sort-amount-down"></i>
+                <a href="?ordre=<?php echo -1 * $tri ; ?>" class="btn btn-primary">
+                    Trier de manière <?php if ($tri == 1) { ?>dé<?php } ?>croissante
+                    <i class="fas fa-sort-amount-<?php if ($tri == 1) { ?>down<?php } else { ?>up<?php } ?>"></i>
                 </a>
             </p>
             <table class="table table-stripped">
@@ -39,7 +39,7 @@ if (isset($_GET['ordre'])) {
                     <tr>
                         <th>
                             Numéro
-                            <i class="fas fa-sort-amount-up"></i>
+                            <i class="fas fa-sort-amount-<?php if ($tri == 1) { ?>up<?php } else { ?>down<?php } ?>"></i>
                         </th>
                         <th>Informations</th>
                         <th>Pochette</th>
