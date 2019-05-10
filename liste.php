@@ -16,6 +16,14 @@ if (isset($_GET['ordre'])) {
         krsort($livres);
     }
 }
+
+$limite = 0;
+if (isset($_GET['limite'])) {
+    $limite = (int) $_GET['limite'];
+}
+if ($limite > 0) {
+    array_splice($livres, $limite);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,13 +34,20 @@ if (isset($_GET['ordre'])) {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <h1>Liste des livres disponibles</h1>
             <p>
                 <a href="?ordre=<?php echo -1 * $tri ; ?>" class="btn btn-primary">
                     Trier de manière <?php if ($tri == 1) { ?>dé<?php } ?>croissante
                     <i class="fas fa-sort-amount-<?php if ($tri == 1) { ?>down<?php } else { ?>up<?php } ?>"></i>
                 </a>
+                Afficher
+                <a href="?ordre=<?php echo $tri ; ?>&limite=0" class="btn btn-<?php echo ($limite === 0)?"primary":"light"; ?>">Tout</a>
+                ou
+                <a href="?ordre=<?php echo $tri ; ?>&limite=1" class="btn btn-<?php echo ($limite === 1)?"primary":"light"; ?>">1</a>
+                <a href="?ordre=<?php echo $tri ; ?>&limite=2" class="btn btn-<?php echo ($limite === 2)?"primary":"light"; ?>">2</a>
+                <a href="?ordre=<?php echo $tri ; ?>&limite=3" class="btn btn-<?php echo ($limite === 3)?"primary":"light"; ?>">3</a>
+                livre(s)
             </p>
             <table class="table table-stripped">
                 <thead class="thead-dark">
