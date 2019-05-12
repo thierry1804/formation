@@ -17,11 +17,16 @@ if (isset($_GET['ordre'])) {
     }
 }
 
+//mise en place de la limite par défaut : sans limite
 $limite = 0;
+//Sile paramètre limite existe
 if (isset($_GET['limite'])) {
+    //Affectation de la valeur du paramètre limite à la variable $limite
     $limite = (int) $_GET['limite'];
 }
+//Si on a défini une limite
 if ($limite > 0) {
+    //On extrait juste les premiers éléments du tableau $livres
     array_splice($livres, $limite);
 }
 ?>
