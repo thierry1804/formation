@@ -1,8 +1,8 @@
 <?php
 //inclusion de datas/auteurs.php
-require 'datas/auteurs.php';
+include 'datas/auteurs.php';
 //inclusion de datas/livres.php
-require 'datas/livres.php';
+include 'datas/livres.php';
 //Tri par défaut
 $tri = 1;
 ksort($livres);
