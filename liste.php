@@ -3,6 +3,11 @@
 include 'datas/auteurs.php';
 //inclusion de datas/livres.php
 include 'datas/livres.php';
+
+//var_dump(array_slice($livres, 0, 2));
+//var_dump(array_slice($livres, 2, 2));
+//var_dump(array_slice($livres, 4, 2));
+//exit;
 //Tri par défaut
 $tri = 1;
 ksort($livres);
@@ -17,6 +22,17 @@ if (isset($_GET['ordre'])) {
     }
 }
 
+
+$page = 1;
+$pages = 1;
+
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+}
+if ($page < 1) {
+    $page = 1;
+}
+
 //mise en place de la limite par défaut : sans limite
 $limite = 0;
 //Sile paramètre limite existe
@@ -26,8 +42,18 @@ if (isset($_GET['limite'])) {
 }
 //Si on a défini une limite
 if ($limite > 0) {
+    $pages = (int) (count($livres) / $limite) + 1;
+    
+    if ($page > $pages) {
+        $page = $pages;
+    }
     //On extrait juste les premiers éléments du tableau $livres
-    array_splice($livres, $limite);
+    if ($page == 1) {
+        array_splice($livres, $limite);
+    }
+    else {
+        $livres = array_slice($livres, $limite * ($page - 1), $limite);
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -57,10 +83,6 @@ if ($limite > 0) {
             <table class="table table-stripped">
                 <thead class="thead-dark">
                     <tr>
-                        <th>
-                            Numéro
-                            <i class="fas fa-sort-amount-<?php if ($tri == 1) { ?>up<?php } else { ?>down<?php } ?>"></i>
-                        </th>
                         <th>Informations</th>
                         <th>Pochette</th>
                         <th>Résumé</th>
@@ -115,11 +137,6 @@ if ($limite > 0) {
             }
         ?>
                     <tr>
-                        <td>
-                            <strong>
-                                #<?php echo $a + 1; ?>
-                            </strong>
-                        </td>
                         <td>
                             <h2><?php echo $auteur; ?></h2>
                             <code><?php echo $bibliographie; ?></code>
