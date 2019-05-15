@@ -1,13 +1,8 @@
 <?php
 //inclusion de datas/auteurs.php
-include 'datas/auteurs.php';
+require 'datas/auteurs.php';
 //inclusion de datas/livres.php
-include 'datas/livres.php';
-
-//var_dump(array_slice($livres, 0, 2));
-//var_dump(array_slice($livres, 2, 2));
-//var_dump(array_slice($livres, 4, 2));
-//exit;
+require 'datas/livres.php';
 //Tri par défaut
 $tri = 1;
 ksort($livres);
@@ -22,15 +17,13 @@ if (isset($_GET['ordre'])) {
     }
 }
 
-
-$page = 1;
-$pages = 1;
-
+$page = 1; //la page par défaut est la page une
+$pages = 1; //le nombre de pages par défaut est une page
 if (isset($_GET['page'])) {
-    $page = $_GET['page'];
+  $page = (int) $_GET['page'];
 }
 if ($page < 1) {
-    $page = 1;
+  $page = 1;
 }
 
 //mise en place de la limite par défaut : sans limite
@@ -42,18 +35,8 @@ if (isset($_GET['limite'])) {
 }
 //Si on a défini une limite
 if ($limite > 0) {
-    $pages = (int) (count($livres) / $limite) + 1;
-    
-    if ($page > $pages) {
-        $page = $pages;
-    }
     //On extrait juste les premiers éléments du tableau $livres
-    if ($page == 1) {
-        array_splice($livres, $limite);
-    }
-    else {
-        $livres = array_slice($livres, $limite * ($page - 1), $limite);
-    }
+	array_splice($livres, $limite);
 }
 ?>
 <!DOCTYPE html>
@@ -79,10 +62,18 @@ if ($limite > 0) {
                 <a href="?ordre=<?php echo $tri ; ?>&limite=2" class="btn btn-<?php echo ($limite === 2)?"primary":"light"; ?>">2</a>
                 <a href="?ordre=<?php echo $tri ; ?>&limite=3" class="btn btn-<?php echo ($limite === 3)?"primary":"light"; ?>">3</a>
                 livre(s)
+              	<a href="?ordre=<?php echo $tri ; ?>&limite=<?php echo $limite; ?>&page=1" class="btn btn-info"><i class="fas fa-angle-double-left"></i></a>
+                <a href="?ordre=<?php echo $tri ; ?>&limite=<?php echo $limite; ?>&page=<?php echo $page - 1; ?>" class="btn btn-info"><i class="fas fa-angle-left"></i></a>
+                <a href="?ordre=<?php echo $tri ; ?>&limite=<?php echo $limite; ?>&page=<?php echo $page + 1; ?>" class="btn btn-info"><i class="fas fa-angle-right"></i></a>
+                <a href="?ordre=<?php echo $tri ; ?>&limite=<?php echo $limite; ?>&page=<?php echo $pages; ?>" class="btn btn-info"><i class="fas fa-angle-double-right"></i></a>
             </p>
             <table class="table table-stripped">
                 <thead class="thead-dark">
                     <tr>
+                        <th>
+                            Numéro
+                            <i class="fas fa-sort-amount-<?php if ($tri == 1) { ?>up<?php } else { ?>down<?php } ?>"></i>
+                        </th>
                         <th>Informations</th>
                         <th>Pochette</th>
                         <th>Résumé</th>
@@ -137,6 +128,11 @@ if ($limite > 0) {
             }
         ?>
                     <tr>
+                        <td>
+                            <strong>
+                                #<?php echo $a + 1; ?>
+                            </strong>
+                        </td>
                         <td>
                             <h2><?php echo $auteur; ?></h2>
                             <code><?php echo $bibliographie; ?></code>
